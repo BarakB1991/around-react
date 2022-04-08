@@ -1,20 +1,9 @@
-function Main() {
-  const handleEditAvatarClick = () => {
-    document
-      .querySelector(".popup_type_edit-avatar")
-      .classList.add("popup_visible");
-  };
-  const handleEditProfileClick = () => {
-    document
-      .querySelector(".popup_type_edit-profile")
-      .classList.add("popup_visible");
-  };
-  const handleAddPlaceClick = () => {
-    document
-      .querySelector(".popup_type_add-card")
-      .classList.add("popup_visible");
-  };
-
+function Main({
+  onEditProfileClick,
+  onAddPlaceClick,
+  onEditAvatarClick,
+  onCardClick,
+}) {
   return (
     <>
       <main>
@@ -22,7 +11,7 @@ function Main() {
           <div className="profile__img-container">
             <img alt="Avatar" className="profile__img" />
             <button
-              onClick={handleEditAvatarClick}
+              onClick={onEditAvatarClick}
               className="profile__img-button"
             ></button>
           </div>
@@ -30,7 +19,7 @@ function Main() {
             <div className="profile__header">
               <h1 className="profile__name"></h1>
               <button
-                onClick={handleEditProfileClick}
+                onClick={onEditProfileClick}
                 type="button"
                 aria-label="Edit Profile"
                 className="profile__edit-btn"
@@ -39,7 +28,7 @@ function Main() {
             <p className="profile__about"></p>
           </div>
           <button
-            onClick={handleAddPlaceClick}
+            onClick={onAddPlaceClick}
             type="button"
             aria-label="Add Image"
             className="profile__add-btn"
