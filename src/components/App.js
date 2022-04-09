@@ -11,11 +11,13 @@ function App() {
   const [isEditAvatarOpen, toggleIsEditAvatarOpen] = useState(false);
   const [isAddPlaceOpen, toggleIsAddPlaceOpen] = useState(false);
   const [isEditProfileOpen, toggleIsEditProfileOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(false);
 
-  const handleCloseButton = () => {
+  const closeAllPopups = () => {
     toggleIsEditAvatarOpen(false);
     toggleIsEditProfileOpen(false);
     toggleIsAddPlaceOpen(false);
+    setSelectedCard(false);
   };
 
   const handleEditAvatarClick = () => {
@@ -31,7 +33,7 @@ function App() {
   };
 
   const handleCardClick = () => {
-    document.querySelector(".popup_type_image").classList.add("popup_visible");
+    setSelectedCard(card);
   };
 
   return (
@@ -45,7 +47,7 @@ function App() {
       />
       <Footer />
       <PopupWithForm
-        onClose={handleCloseButton}
+        onClose={closeAllPopups}
         isOpen={isEditProfileOpen}
         name="edit-profile"
         title="Edit profile"
@@ -75,7 +77,7 @@ function App() {
         <span id="input-profession-error" className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm
-        onClose={handleCloseButton}
+        onClose={closeAllPopups}
         isOpen={isAddPlaceOpen}
         name="add-card"
         title="New place"
@@ -103,7 +105,7 @@ function App() {
         <span id="input-image-link-error" className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm
-        onClose={handleCloseButton}
+        onClose={closeAllPopups}
         isOpen={isEditAvatarOpen}
         name="edit-avatar"
         title="Change profile picture"
@@ -121,12 +123,12 @@ function App() {
       </PopupWithForm>
       <PopupWithForm
         // isOpen={isConfirmOpen}
-        onClose={handleCloseButton}
+        onClose={closeAllPopups}
         name="confirm"
         title="Are you sure?"
         buttonText="Yes"
       ></PopupWithForm>
-      <ImagePopup />
+      <ImagePopup onClose={onClose} selectedCard={selectedCard} />
       <PopupWithForm name="confirm" title="Are you sure?" buttonText="Yes" />
       {/* <div className="popup popup_type_confirm">
         <div className="popup__box">
@@ -149,23 +151,6 @@ function App() {
           </form>
         </div>
       </div> */}
-      <template id="card-template">
-        <li className="card">
-          <button alt="Delete button" className="card__delete-btn"></button>
-          <img type="image" src="#" alt="Card image" className="card__img" />
-          <div className="card__info">
-            <h2 className="card__title"></h2>
-            <div className="card__like-container">
-              <button
-                type="button"
-                aria-label="Like"
-                className="card__like-btn"
-              ></button>
-              <span className="card__like-counter"></span>
-            </div>
-          </div>
-        </li>
-      </template>
     </div>
   );
 }

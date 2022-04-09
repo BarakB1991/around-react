@@ -1,15 +1,41 @@
+import api from "../utils/Api";
+import React, { useEffect, useState } from "react";
+import Card from "./Card";
+
 function Main({
   onEditProfileClick,
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
 }) {
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    api
+      .getCardsAndUserData()
+      .then(([userData, cards]) => {
+        console.log(cards);
+        setUserName(userData.name);
+        setUserDescription(userData.about);
+        setUserAvatar(userData.avatar);
+        setCards(cards);
+      })
+      .catch((err) => console.log(`Error: ${err}`));
+  }, []);
+
   return (
     <>
       <main>
         <section className="profile" id="">
           <div className="profile__img-container">
-            <img alt="Avatar" className="profile__img" />
+            <div
+              alt="Avatar"
+              className="profile__img"
+              style={{ backgroundImage: `url(${userAvatar})` }}
+            />
             <button
               onClick={onEditAvatarClick}
               className="profile__img-button"
@@ -17,7 +43,7 @@ function Main({
           </div>
           <div className="profile__info">
             <div className="profile__header">
-              <h1 className="profile__name"></h1>
+              <h1 className="profile__name">{userName}</h1>
               <button
                 onClick={onEditProfileClick}
                 type="button"
@@ -25,7 +51,7 @@ function Main({
                 className="profile__edit-btn"
               ></button>
             </div>
-            <p className="profile__about"></p>
+            <p className="profile__about">{userDescription}</p>
           </div>
           <button
             onClick={onAddPlaceClick}
@@ -35,7 +61,16 @@ function Main({
           ></button>
         </section>
         <section className="cards">
-          <ul className="cards__list"></ul>
+          <ul className="cards__list">
+            {cards.map((card) => (
+              <Card
+                key={card._id}
+                card={card}
+                // onDeleteButtonClick={onDeleteButtonClick}
+                onCardClick={onCardClick}
+              />
+            ))}
+          </ul>
         </section>
       </main>
     </>
