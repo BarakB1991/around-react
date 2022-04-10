@@ -18,7 +18,7 @@ export default function PopupWithForm({
           className="popup__close-btn"
         ></button>
         <h3 className={`popup__title popup__title_type_${name}`}>{title}</h3>
-        <form className="popup__form" id={`${name}-form`} noValidate>
+        <form className="popup__form" id={`${name}-form`}>
           {children}
           <button
             type="submit"

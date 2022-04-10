@@ -6,34 +6,34 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
-  const [isEditAvatarOpen, toggleIsEditAvatarOpen] = useState(false);
-  const [isAddPlaceOpen, toggleIsAddPlaceOpen] = useState(false);
-  const [isEditProfileOpen, toggleIsEditProfileOpen] = useState(false);
-  const [isconfirmationOpen, toggleIsConfirmationOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(false);
+  const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
+  const [isAddPlaceOpen, setIsAddPlaceOpen] = useState(false);
+  const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
+  const [isconfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const closeAllPopups = () => {
-    toggleIsEditAvatarOpen(false);
-    toggleIsEditProfileOpen(false);
-    toggleIsAddPlaceOpen(false);
-    toggleIsConfirmationOpen(false);
-    setSelectedCard(false);
+    setIsEditAvatarOpen(false);
+    setIsEditProfileOpen(false);
+    setIsAddPlaceOpen(false);
+    setIsConfirmationOpen(false);
+    setSelectedCard(null);
   };
 
   const handleEditAvatarClick = () => {
-    toggleIsEditAvatarOpen(true);
+    setIsEditAvatarOpen(true);
   };
 
   const handleEditProfileClick = () => {
-    toggleIsEditProfileOpen(true);
+    setIsEditProfileOpen(true);
   };
 
   const handleAddPlaceClick = () => {
-    toggleIsAddPlaceOpen(true);
+    setIsAddPlaceOpen(true);
   };
 
   const handleConfirmationClick = () => {
-    toggleIsConfirmationOpen(true);
+    setIsConfirmationOpen(true);
   };
 
   function handleCardClick(card) {
@@ -134,28 +134,6 @@ function App() {
         buttonText="Yes"
       ></PopupWithForm>
       <ImagePopup onClose={closeAllPopups} card={selectedCard} />
-      <PopupWithForm name="confirm" title="Are you sure?" buttonText="Yes" />
-      {/* <div className="popup popup_type_confirm">
-        <div className="popup__box">
-          <button
-            type="button"
-            aria-label="Close"
-            className="popup__close-btn"
-          ></button>
-          <form className="popup__form" id="confirm-action" noValidate>
-            <h3 className="popup__title popup__title_type_confirm">
-              Are you sure?
-            </h3>
-            <button
-              type="submit"
-              aria-label="Yes"
-              className="popup__submit-btn popup__submit-btn_type_confirm"
-            >
-              Yes
-            </button>
-          </form>
-        </div>
-      </div> */}
     </div>
   );
 }

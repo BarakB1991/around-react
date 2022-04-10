@@ -1,11 +1,9 @@
 import logo from "../images/Logo.svg";
 function Header() {
   return (
-    <>
-      <header className="header">
-        <img src={logo} alt="Around The U.S. Logo" className="logo" />
-      </header>
-    </>
+    <header className="header">
+      <img src={logo} alt="Around The U.S. Logo" className="logo" />
+    </header>
   );
 }
 

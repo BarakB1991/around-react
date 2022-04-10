@@ -13,7 +13,7 @@ function Card({ onCardClick, card, onDeleteButtonClick }) {
       <img
         type="image"
         src={card.link}
-        alt="Card"
+        alt={card.name}
         className="card__img"
         onClick={handleClick}
       />
