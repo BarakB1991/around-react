@@ -1,6 +1,6 @@
-export default function ImagePopup({ onClose, selectedCard }) {
+function ImagePopup({ onClose, card }) {
   return (
-    <div className="popup popup_type_image">
+    <div className={`popup popup_type_image ${card ? "popup_visible" : ""}`}>
       <div className="popup__content">
         <button
           onClick={onClose}
@@ -8,15 +8,11 @@ export default function ImagePopup({ onClose, selectedCard }) {
           aria-label="Close"
           className="popup__close-btn popup__close-btn_type_image"
         ></button>
-        <img
-          src={selectedCard.link}
-          alt={selectedCard.name}
-          className="popup__image"
-        />
-        <h4 className="popup__title popup__title_type_image">
-          {selectedCard.name}
-        </h4>
+        <img src={card.link} alt={card.name} className="popup__image" />
+        <h4 className="popup__title popup__title_type_image">{card.name}</h4>
       </div>
     </div>
   );
 }
+
+export default ImagePopup;
