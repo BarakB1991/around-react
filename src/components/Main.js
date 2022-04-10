@@ -18,7 +18,6 @@ function Main({
     api
       .getCardsAndUserData()
       .then(([userData, cards]) => {
-        console.log(cards);
         setUserName(userData.name);
         setUserDescription(userData.about);
         setUserAvatar(userData.avatar);

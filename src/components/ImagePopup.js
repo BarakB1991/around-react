@@ -2,12 +2,14 @@ function ImagePopup({ onClose, card }) {
   return (
     <div className={`popup popup_type_image ${card ? "popup_visible" : ""}`}>
       <div className="popup__content">
-        <button
-          onClick={onClose}
-          type="button"
-          aria-label="Close"
-          className="popup__close-btn popup__close-btn_type_image"
-        ></button>
+        {card ? (
+          <button
+            onClick={onClose}
+            type="button"
+            aria-label="Close"
+            className="popup__close-btn popup__close-btn_type_image"
+          />
+        ) : null}
         <img
           src={card ? card.link : ""}
           alt={card ? card.name : ""}
