@@ -5,8 +5,6 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
-// const onClose = {};
-
 function App() {
   const [isEditAvatarOpen, toggleIsEditAvatarOpen] = useState(false);
   const [isAddPlaceOpen, toggleIsAddPlaceOpen] = useState(false);
@@ -32,9 +30,9 @@ function App() {
     toggleIsAddPlaceOpen(true);
   };
 
-  const handleCardClick = () => {
+  function handleCardClick(card) {
     setSelectedCard(card);
-  };
+  }
 
   return (
     <div className="wrapper">
@@ -128,7 +126,7 @@ function App() {
         title="Are you sure?"
         buttonText="Yes"
       ></PopupWithForm>
-      <ImagePopup onClose={onClose} selectedCard={selectedCard} />
+      <ImagePopup onClose={closeAllPopups} card={selectedCard} />
       <PopupWithForm name="confirm" title="Are you sure?" buttonText="Yes" />
       {/* <div className="popup popup_type_confirm">
         <div className="popup__box">
