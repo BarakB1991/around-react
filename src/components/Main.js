@@ -7,6 +7,7 @@ function Main({
   onAddPlaceClick,
   onEditAvatarClick,
   onCardClick,
+  onDeleteButtonClick,
 }) {
   const [userName, setUserName] = useState("");
   const [userDescription, setUserDescription] = useState("");
@@ -63,7 +64,12 @@ function Main({
         <section className="cards">
           <ul className="cards__list">
             {cards.map((card) => (
-              <Card key={card._id} card={card} onCardClick={onCardClick} />
+              <Card
+                key={card._id}
+                card={card}
+                onCardClick={onCardClick}
+                onDeleteButtonClick={onDeleteButtonClick}
+              />
             ))}
           </ul>
         </section>

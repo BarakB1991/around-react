@@ -9,12 +9,14 @@ function App() {
   const [isEditAvatarOpen, toggleIsEditAvatarOpen] = useState(false);
   const [isAddPlaceOpen, toggleIsAddPlaceOpen] = useState(false);
   const [isEditProfileOpen, toggleIsEditProfileOpen] = useState(false);
+  const [isconfirmationOpen, toggleIsConfirmationOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(false);
 
   const closeAllPopups = () => {
     toggleIsEditAvatarOpen(false);
     toggleIsEditProfileOpen(false);
     toggleIsAddPlaceOpen(false);
+    toggleIsConfirmationOpen(false);
     setSelectedCard(false);
   };
 
@@ -30,6 +32,10 @@ function App() {
     toggleIsAddPlaceOpen(true);
   };
 
+  const handleConfirmationClick = () => {
+    toggleIsConfirmationOpen(true);
+  };
+
   function handleCardClick(card) {
     setSelectedCard(card);
   }
@@ -42,6 +48,7 @@ function App() {
         onAddPlaceClick={handleAddPlaceClick}
         onEditAvatarClick={handleEditAvatarClick}
         onCardClick={handleCardClick}
+        onDeleteButtonClick={handleConfirmationClick}
       />
       <Footer />
       <PopupWithForm
@@ -120,7 +127,7 @@ function App() {
         <span id="input-avatar-link-error" className="popup__error"></span>
       </PopupWithForm>
       <PopupWithForm
-        // isOpen={isConfirmOpen}
+        isOpen={isconfirmationOpen}
         onClose={closeAllPopups}
         name="confirm"
         title="Are you sure?"

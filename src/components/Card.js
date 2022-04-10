@@ -1,11 +1,15 @@
-function Card({ onCardClick, card }) {
+function Card({ onCardClick, card, onDeleteButtonClick }) {
   function handleClick() {
     onCardClick(card);
   }
 
   return (
     <li className="card">
-      <button alt="Delete button" className="card__delete-btn"></button>
+      <button
+        onClick={onDeleteButtonClick}
+        alt="Delete button"
+        className="card__delete-btn"
+      ></button>
       <img
         type="image"
         src={card.link}
