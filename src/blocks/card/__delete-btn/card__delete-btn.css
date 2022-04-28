@@ -9,6 +9,7 @@
   background-size: contain;
   border-style: none;
   cursor: pointer;
+  visibility: visible;
 }
 
 .card__delete-btn:hover {

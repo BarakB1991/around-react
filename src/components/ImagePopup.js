@@ -11,7 +11,7 @@ function ImagePopup({ onClose, card }) {
           />
         ) : null}
         <img
-          src={card ? card.link : ""}
+          src={card ? card.link : "#"}
           alt={card ? card.name : ""}
           className="popup__image"
         />

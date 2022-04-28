@@ -7,9 +7,9 @@ class Api extends React.Component {
     this._token = props.token;
   }
 
-  getCardsAndUserData() {
-    return Promise.all([this.getUserData(), this.getInitialCards()]);
-  }
+  // getCardsAndUserData() {
+  //   return Promise.all([this.getUserData(), this.getInitialCards()]);
+  // }
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
@@ -60,6 +60,14 @@ class Api extends React.Component {
       },
     }).then((res) => this._getResponseData(res));
   };
+
+  changeLikeCardStatus(cardId, isNotLiked) {
+    if (isNotLiked) {
+      return this.addLike(cardId);
+    } else {
+      return this.removeLike(cardId);
+    }
+  }
 
   addLike = (cardId) => {
     return fetch(`${this._url}/cards/likes/${cardId}`, {
