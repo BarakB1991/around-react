@@ -23,31 +23,25 @@ class Api extends React.Component {
     }).then((res) => this._getResponseData(res));
   }
 
-  editProfile(userName, userAbout) {
+  setUserInfo(userDetails) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
       headers: {
         authorization: this._token,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        name: userName,
-        about: userAbout,
-      }),
+      body: JSON.stringify(userDetails),
     }).then((res) => this._getResponseData(res));
   }
 
-  addNewCard(name, link) {
+  addNewCard(card) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
       headers: {
         authorization: this._token,
         "content-type": "application/json",
       },
-      body: JSON.stringify({
-        name: name,
-        link: link,
-      }),
+      body: JSON.stringify(card),
     }).then((res) => this._getResponseData(res));
   }
 
@@ -89,14 +83,14 @@ class Api extends React.Component {
     }).then((res) => this._getResponseData(res));
   };
 
-  editAvatar = (avatar) => {
+  setUserAvatar = (avatar) => {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
       headers: {
         authorization: this._token,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ avatar }),
+      body: JSON.stringify(avatar),
     }).then((res) => this._getResponseData(res));
   };
 

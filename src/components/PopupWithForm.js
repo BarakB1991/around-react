@@ -5,6 +5,7 @@ export default function PopupWithForm({
   buttonText,
   isOpen,
   onClose,
+  onSubmit,
 }) {
   return (
     <div
@@ -18,7 +19,7 @@ export default function PopupWithForm({
           className="popup__close-btn"
         ></button>
         <h3 className={`popup__title popup__title_type_${name}`}>{title}</h3>
-        <form className="popup__form" id={`${name}-form`}>
+        <form className="popup__form" id={`${name}-form`} onSubmit={onSubmit}>
           {children}
           <button
             type="submit"
