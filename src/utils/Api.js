@@ -1,15 +1,11 @@
 import React from "react";
 
-export default class Api extends React.Component {
+class Api extends React.Component {
   constructor(props) {
     super(props);
     this._url = props.baseUrl;
     this._token = props.token;
   }
-
-  // getCardsAndUserData() {
-  //   return Promise.all([this.getUserData(), this.getInitialCards()]);
-  // }
 
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
@@ -102,7 +98,9 @@ export default class Api extends React.Component {
   }
 }
 
-export const api = new Api({
+const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   token: "c785e696-84a9-4aca-b3d2-750b2694b444",
 });
+
+export default api;
