@@ -1,6 +1,6 @@
 import React from "react";
 
-class Api extends React.Component {
+export default class Api extends React.Component {
   constructor(props) {
     super(props);
     this._url = props.baseUrl;
@@ -102,9 +102,7 @@ class Api extends React.Component {
   }
 }
 
-const api = new Api({
+export const api = new Api({
   baseUrl: "https://around.nomoreparties.co/v1/group-12",
   token: "c785e696-84a9-4aca-b3d2-750b2694b444",
 });
-
-export default api;
