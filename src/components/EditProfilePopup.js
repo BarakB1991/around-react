@@ -19,15 +19,6 @@ export default function EditProfilePopup({ onClose, isOpen, onUpdateUser }) {
       name: input.name,
       about: input.description,
     });
-    handleReset();
-    onClose();
-  }
-
-  function handleReset() {
-    setinput({
-      name: "",
-      description: "",
-    });
   }
 
   function handleChange(e) {

@@ -6,14 +6,13 @@ export default function EditAvatarPopup({ onClose, isOpen, onUpdateAvatar }) {
 
   useEffect(() => {
     inputRef.current.value = "";
-  }, []);
+  }, [isOpen]);
 
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateAvatar({
       avatar: inputRef.current.value,
     });
-    onClose();
   }
 
   return (

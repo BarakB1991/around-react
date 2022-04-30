@@ -7,4 +7,4 @@ import reportWebVitals from "./reportWebVitals";
 const root = ReactDOM.createRoot(document.querySelector(".page__content"));
 root.render(<App />);
 
-reportWebVitals(root.render(<App />));
+reportWebVitals();

@@ -1,20 +1,22 @@
 import PopupWithForm from "./PopupWithForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function AddPlacePopup({ onClose, isOpen, onAddCard }) {
+export default function AddPlacePopup({ onClose, isOpen, onAddPlaceSubmit }) {
   const [input, setinput] = useState({
     cardTitle: "",
     imageLink: "",
   });
 
+  useEffect(() => {
+    handleReset();
+  }, [isOpen]);
+
   function handleSubmit(e) {
     e.preventDefault();
-    onAddCard({
+    onAddPlaceSubmit({
       name: input.cardTitle,
       link: input.imageLink,
     });
-    handleReset();
-    onClose();
   }
 
   function handleReset() {
@@ -25,10 +27,10 @@ export default function AddPlacePopup({ onClose, isOpen, onAddCard }) {
   }
 
   function handleChange(e) {
-    const value = e.target.value;
+    const { value, name } = e.target;
     setinput({
       ...input,
-      [e.target.name]: value,
+      [name]: value,
     });
   }
 

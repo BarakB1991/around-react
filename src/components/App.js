@@ -14,7 +14,7 @@ function App() {
   const [isEditAvatarOpen, setIsEditAvatarOpen] = useState(false);
   const [isAddPlaceOpen, setIsAddPlaceOpen] = useState(false);
   const [isEditProfileOpen, setIsEditProfileOpen] = useState(false);
-  const [isconfirmationOpen, setIsConfirmationOpen] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -44,6 +44,18 @@ function App() {
     setIsConfirmationOpen(false);
     setSelectedCard(null);
   };
+
+  useEffect(() => {
+    const closeByEscape = (e) => {
+      if (e.key === "Escape") {
+        closeAllPopups();
+      }
+    };
+
+    document.addEventListener("keydown", closeByEscape);
+
+    return () => document.removeEventListener("keydown", closeByEscape);
+  }, []);
 
   function handleCardDelete(card) {
     api
@@ -79,21 +91,30 @@ function App() {
   const handleUpdateUser = (data) => {
     api
       .setUserInfo(data)
-      .then((updatedUser) => setCurrentUser(updatedUser))
+      .then((updatedUser) => {
+        setCurrentUser(updatedUser);
+        closeAllPopups();
+      })
       .catch((err) => console.log(`Error: ${err}`));
   };
 
   const handleUpdateAvatar = (avatar) => {
     api
       .setUserAvatar(avatar)
-      .then((updatedAvatar) => setCurrentUser(updatedAvatar))
+      .then((updatedAvatar) => {
+        setCurrentUser(updatedAvatar);
+        closeAllPopups();
+      })
       .catch((err) => console.log(`Error: ${err}`));
   };
 
   const handleAddCard = (card) => {
     api
       .addNewCard(card)
-      .then((newCard) => setCards([newCard, ...cards]))
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
       .catch((err) => console.log(`Error: ${err}`));
   };
 
@@ -138,7 +159,7 @@ function App() {
           isOpen={isEditProfileOpen}
         ></EditProfilePopup>
         <AddPlacePopup
-          onAddCard={handleAddCard}
+          onAddPlaceSubmit={handleAddCard}
           onClose={closeAllPopups}
           isOpen={isAddPlaceOpen}
         ></AddPlacePopup>
@@ -148,7 +169,7 @@ function App() {
           isOpen={isEditAvatarOpen}
         ></EditAvatarPopup>
         <PopupWithForm
-          isOpen={isconfirmationOpen}
+          isOpen={isConfirmationOpen}
           onClose={closeAllPopups}
           name="confirm"
           title="Are you sure?"
