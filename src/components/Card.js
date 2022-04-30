@@ -1,5 +1,5 @@
 import React from "react";
-import { CurrentUserContext } from "../context/CurrentUserContext";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function Card({ onCardClick, card, onDeleteButtonClick, onLikeButtonClick }) {
   function handleCardClick() {
